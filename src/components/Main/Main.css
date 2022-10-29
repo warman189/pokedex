@@ -1,0 +1,53 @@
+.character_box {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 104px;
+  height: 112px;
+  background: #ffffff;
+  border: 1px solid #74cb48;
+  border-radius: 8px;
+}
+.character_box .character_id {
+  order: 0;
+  width: 104px;
+  height: 16px;
+}
+.character_box .character_id .inner_id {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 12px;
+}
+.character_box .character_renders {
+  display: flex;
+  align-items: flex-start;
+  width: 104px;
+  height: 72px;
+  order: 1;
+}
+
+.character_box .character_renders .character_image {
+  height: 72px;
+  width: 72px;
+}
+.character_box .character_name {
+  position: absolute;
+  background: #545454;
+  width: 104px;
+  height: 24px;
+  border-radius: 0 0 6px 6px;
+  bottom: 0;
+  order: 2;
+}
+.character_box .character_name .character_text {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 23px;
+  text-align: center;
+  color: #ffffff;
+}

@@ -403,49 +403,36 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  transform: rotate(180deg);
   width: 231px;
   height: 100px;
-  margin-top: -3px;
 }
-.popUp_wrapper
-  .character_info
-  .character_main
-  .character_stats
-  .character_stats_range
-  input[type="range"] {
-  pointer-events: none;
-  overflow: hidden;
+.progressBar {
   width: 231px;
   height: 4px;
-  margin: 6px 0px;
-  -webkit-appearance: none;
-  background-color: #666666;
-  border-radius: 6px;
+  border-radius: 0.25rem;
+  background: rgba(85, 85, 85, 0.279);
+  overflow: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0px, 0px, 0px);
+  margin: 6px;
 }
-.popUp_wrapper
-  .character_info
-  .character_main
-  .character_stats
-  .character_stats_range
-  input[type="range"]::-webkit-slider-runnable-track {
-  height: 10px;
-  -webkit-appearance: none;
-  color: #13bba4;
-  margin-top: -1px;
+.progressBarFill {
+  position: absolute;
+  width: 100%;
+  box-shadow: rgb(28 216 14 / 25%) 0px 0px 0.75rem 0.25rem;
+  height: 4px;
+  border-radius: 0.25rem;
+  transform: translate3d(-100%, 0px, 0px 0px);
+  animation: myAnim 2s ease 0s 1 normal forwards running;
 }
-.popUp_wrapper
-  .character_info
-  .character_main
-  .character_stats
-  .character_stats_range
-  input[type="range"]::-webkit-slider-thumb {
-  width: 45px;
-  height: 3px;
-  -webkit-appearance: none;
-  box-shadow: -231px 0 0 231px #ffffff96;
+@keyframes myAnim {
+  0% {
+    width: 0px;
+  }
+  100% {
+    transform: initial;
+  }
 }
-
 /* switch display */
 
 .popUp_wrapper_hide {

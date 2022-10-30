@@ -55,6 +55,7 @@ const Data = () => {
       })
     );
     setCharacterData(_character);
+    console.log(_character)
   };
 
   const onSearchHandler = async (character) => {

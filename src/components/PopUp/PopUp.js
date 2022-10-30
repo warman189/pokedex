@@ -3,6 +3,25 @@ import typeColors from "../services/typeColors";
 import "./PopUp.css";
 
 const PopUp = ({ data }) => {
+  const formatStatName = (statName) => {
+    switch (statName) {
+      case "hp":
+        return "HP";
+      case "attack":
+        return "ATK";
+      case "defense":
+        return "DEF";
+      case "special-attack":
+        return "SATK";
+      case "special-defense":
+        return "SDEF";
+      case "speed":
+        return "SPD";
+      default:
+        return statName;
+    }
+  };
+
   const hideProfile = () => {
     const modalWindow = document.querySelector(".popUp_wrapper");
     modalWindow.classList.remove("popUp_wrapper_show");
@@ -40,7 +59,9 @@ const PopUp = ({ data }) => {
                   </h1>
                 </div>
                 <div className="character_id">
-                  <p className="id_text">#{data.id.toString().padStart(3, '0')}</p>
+                  <p className="id_text">
+                    #{data.id.toString().padStart(3, "0")}
+                  </p>
                 </div>
               </div>
               <div className="character_template">
@@ -178,71 +199,42 @@ const PopUp = ({ data }) => {
                     className="character_stats_txt"
                     style={{ color: typeColors[data.types[0].type.name] }}
                   >
-                    <p>HP</p>
-                    <p>ATK</p>
-                    <p>DEF</p>
-                    <p>SATK</p>
-                    <p>SDEF</p>
-                    <p>SPD</p>
+                    {data.stats.map((stat) => {
+                      return (
+                        <>
+                          <p>{formatStatName(stat.stat.name)}</p>
+                        </>
+                      );
+                    })}
                   </div>
                   <hr style={{ height: 100 }}></hr>
                   <div className="character_stats_num">
-                    <p className="stats_num">{data.stats[0].base_stat}</p>
-                    <p className="stats_num">{data.stats[1].base_stat}</p>
-                    <p className="stats_num">{data.stats[2].base_stat}</p>
-                    <p className="stats_num">{data.stats[3].base_stat}</p>
-                    <p className="stats_num">{data.stats[4].base_stat}</p>
-                    <p className="stats_num">{data.stats[5].base_stat}</p>
+                    {data.stats.map((stat) => {
+                      return (
+                        <>
+                          <p className="stats_num">
+                            {stat.base_stat.toString().padStart(3, "0")}
+                          </p>
+                        </>
+                      );
+                    })}
                   </div>
                   <div className="character_stats_range">
-                    <input
-                      type="range"
-                      className="stats_range"
-                      defaultValue={data.stats[5].base_stat}
-                      style={{
-                        backgroundColor: typeColors[data.types[0].type.name],
-                      }}
-                    ></input>
-                    <input
-                      type="range"
-                      className="stats_range"
-                      style={{
-                        backgroundColor: typeColors[data.types[0].type.name],
-                      }}
-                      defaultValue={data.stats[4].base_stat}
-                    ></input>
-                    <input
-                      type="range"
-                      className="stats_range"
-                      style={{
-                        backgroundColor: typeColors[data.types[0].type.name],
-                      }}
-                      defaultValue={data.stats[3].base_stat}
-                    ></input>
-                    <input
-                      type="range"
-                      className="stats_range"
-                      style={{
-                        backgroundColor: typeColors[data.types[0].type.name],
-                      }}
-                      defaultValue={data.stats[2].base_stat}
-                    ></input>
-                    <input
-                      type="range"
-                      className="stats_range"
-                      style={{
-                        backgroundColor: typeColors[data.types[0].type.name],
-                      }}
-                      defaultValue={data.stats[1].base_stat}
-                    ></input>
-                    <input
-                      type="range"
-                      className="stats_range"
-                      style={{
-                        backgroundColor: typeColors[data.types[0].type.name],
-                      }}
-                      defaultValue={data.stats[0].base_stat}
-                    ></input>
+                    {data.stats.map((stat) => {
+                      return (
+                        <>
+                          <div className="progressBar">
+                            <div
+                              className="progressBarFill"
+                              style={{
+                                background: typeColors[data.types[0].type.name],
+                                width: stat.base_stat,
+                              }}
+                            ></div>
+                          </div>
+                        </>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

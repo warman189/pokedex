@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 
 const Header = (props) => {
+  
   const [search, setSearch] = useState("");
   const { onSearch } = props;
 

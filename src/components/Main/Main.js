@@ -1,5 +1,5 @@
 import React from "react";
-import typeColors from "../services/typeColors";
+import typeColors from "../services/charactersColors";
 import "./Main.css";
 
 const Main = ({ character, infoCharacter }) => {
@@ -17,18 +17,12 @@ const Main = ({ character, infoCharacter }) => {
     <div
       className="character_box"
       key={character.id}
-      onClick={() => {
-        infoCharacter(character);
-        showInfo();
-      }}
+      onClick={() => { infoCharacter(character); showInfo(); }}
       style={{ borderColor: typeColors[character.types[0].type.name] }}
     >
       <div className="character_id">
-        <p
-          className="inner_id"
-          style={{ color: typeColors[character.types[0].type.name] }}
-        >
-          #{character.id.toString().padStart(3, '0')}
+        <p className="inner_id" style={{ color: typeColors[character.types[0].type.name] }} >
+          #{character.id.toString().padStart(3, "0")}
         </p>
       </div>
       <div className="character_renders">

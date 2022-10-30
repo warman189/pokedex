@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  getAllCharacters,
-  getCharacters,
-  searchCharacter,
-} from "./services/pokemon";
+import { getAllCharacters, getCharacters, searchCharacter } from "./services/api";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import PopUp from "../components/PopUp/PopUp";

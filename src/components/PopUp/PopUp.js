@@ -1,8 +1,9 @@
 import React from "react";
-import typeColors from "../services/typeColors";
+import typeColors from "../services/charactersColors";
 import "./PopUp.css";
 
 const PopUp = ({ data }) => {
+  
   const formatStatName = (statName) => {
     switch (statName) {
       case "hp":

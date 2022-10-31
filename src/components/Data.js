@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllCharacters, getCharacters  } from "./services/api";
+import { getAllCharacters, getCharacters } from "./services/api";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import PopUp from "../components/PopUp/PopUp";
@@ -17,9 +17,9 @@ const Data = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await getAllCharacters(characterUrl);
+      loadingCharacter(response.results);
       setNextUrl(response.next);
       setPrevUrl(response.previous);
-      loadingCharacter(response.results);
       setLoading(false);
     }
     fetchData();
@@ -80,6 +80,8 @@ const Data = () => {
                 />
               );
             })}
+            <button onClick={prev}>prev</button>
+            <button onClick={next}>next</button>
           </>
         )}
       </div>

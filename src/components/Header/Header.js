@@ -3,8 +3,9 @@ import typeColors from "../services/typeColors";
 import "./Header.css";
 
 const Header = ({ toSearch, characters, value }) => {
-  const [isOpen, setIsOpen] = useState(true);
 
+  // show/hide auto complete search bar
+  const [isOpen, setIsOpen] = useState(true);
   const clickHandler = (e) => {
     toSearch(e.target.textContent);
     setIsOpen(!isOpen);
@@ -12,10 +13,15 @@ const Header = ({ toSearch, characters, value }) => {
   const inputClickHandler = () => {
     setIsOpen(true);
   };
+  // -------*
 
+
+
+  // refresh function
   const onClickRefreshPage = () => {
     window.location.reload();
   };
+  // -------* 
 
   return (
     <div className="header_wrapper">
@@ -61,7 +67,7 @@ const Header = ({ toSearch, characters, value }) => {
               margin: 0,
               padding: 0,
               zIndex: 1,
-              boxShadow: "1px 1px 5px rgba(0, 0, 0, 0.15)",
+              boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.15)",
               maxHeight: 240,
               height: "auto",
               overflow: "auto",

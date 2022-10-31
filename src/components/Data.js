@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllCharacters, getCharacters, searchCharacter } from "./services/api";
+import { getAllCharacters, getCharacters  } from "./services/api";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import PopUp from "../components/PopUp/PopUp";
@@ -7,10 +7,11 @@ import PopUp from "../components/PopUp/PopUp";
 const Data = () => {
   const [characterData, setCharacterData] = useState([]);
   const [characterInfo, setCharacterInfo] = useState();
+  const [characterValue, setCharacterValue] = useState("");
   const [nextUrl, setNextUrl] = useState("");
   const [prevUrl, setPrevUrl] = useState("");
   const [loading, setLoading] = useState(true);
-  const limit = 21;
+  const limit = 48;
   const characterUrl = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const Data = () => {
       const response = await getAllCharacters(characterUrl);
       setNextUrl(response.next);
       setPrevUrl(response.previous);
-      const character = loadingCharacter(response.results);
+      loadingCharacter(response.results);
       setLoading(false);
     }
     fetchData();
@@ -53,83 +54,24 @@ const Data = () => {
     setCharacterData(_character);
   };
 
-  const onSearchHandler = async (character) => {
-    if (!character) return getAllCharacters();
-    setLoading(true);
-    const result = await searchCharacter(character);
-    if (!result) {
-      setLoading(true);
-    } else {
-      setCharacterData([result]);
-    }
-    setLoading(false);
-  };
+  const charactersFilter = characterData.filter((char) => {
+    return char.name.toLowerCase().includes(characterValue.toLowerCase());
+  });
 
   return (
     <div className="wrapper">
       <PopUp data={characterInfo} />
       <div className="wrapper_container">
-        <Header onSearch={onSearchHandler} />
-        <span
-          style={{
-            position: "absolute",
-            display: "flex",
-            background:
-              "linear-gradient(270deg, rgba(29, 29, 29, 0) 0.04%, rgb(202 202 202 / 40%) 99.5%)",
-            width: "7%",
-            height: "145%",
-            left: 0,
-            top: 0,
-            zIndex: 1,
-            cursor: "pointer",
-          }}
-          onClick={prev}
-        >
-          <img
-            src={require("./PopUp/images/arrow.png")}
-            alt=""
-            style={{
-              position: "sticky",
-              width: 8,
-              height: 16,
-              top: "calc(50% - 30px/2)",
-              left: -7,
-              transform: "rotate(180deg)",
-            }}
-          ></img>
-        </span>
-        <span
-          style={{
-            position: "absolute",
-            display: "flex",
-            background:
-              "linear-gradient(90deg, rgba(29, 29, 29, 0) 0.04%, rgb(202 202 202 / 40%) 99.5%)",
-            width: "7%",
-            height: "145%",
-            right: 0,
-            top: 0,
-            zIndex: 1,
-            cursor: "pointer",
-          }}
-          onClick={next}
-        >
-          <img
-            src={require("./PopUp/images/arrow.png")}
-            alt=""
-            style={{
-              position: "sticky",
-              width: 8,
-              height: 16,
-              top: "calc(50% - 40px/2)",
-              right: -7,
-            }}
-          ></img>
-        </span>
+        <Header
+          toSearch={setCharacterValue}
+          characters={charactersFilter}
+          value={characterValue}
+        />
         {loading ? (
           <div className="spinner"></div>
         ) : (
           <>
-            {characterData.map((character, i) => {
+            {charactersFilter.map((character, i) => {
               return (
                 <Main
                   key={i}

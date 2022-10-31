@@ -59,8 +59,11 @@
   text-align: center;
 }
 .header_container .header_search .search_char:focus {
-  outline-color: #666666;
+  outline: none;
   background-image: none;
   text-align: left;
   padding-left: 5px;
+}
+.item:hover {
+  background: #21212143;
 }

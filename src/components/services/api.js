@@ -17,9 +17,3 @@ export async function getCharacters(url) {
       });
   });
 }
-
-export const searchCharacter = async (character) => {
-  const charSearchUrl = `https://pokeapi.co/api/v2/pokemon/${character}`;
-  const responce = await fetch(charSearchUrl);
-  return await responce.json();
-};

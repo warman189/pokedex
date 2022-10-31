@@ -57,7 +57,7 @@ p {
 }
 
 .wrapper_container {
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;

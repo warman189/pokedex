@@ -1,9 +1,8 @@
 import React from "react";
-import typeColors from "../services/charactersColors";
+import typeColors from "../services/typeColors";
 import "./PopUp.css";
 
 const PopUp = ({ data }) => {
-  
   const formatStatName = (statName) => {
     switch (statName) {
       case "hp":
@@ -65,6 +64,7 @@ const PopUp = ({ data }) => {
                   </p>
                 </div>
               </div>
+
               <div className="character_template">
                 <img
                   src={data.sprites.other["official-artwork"].front_default}
@@ -72,6 +72,7 @@ const PopUp = ({ data }) => {
                   className="temp_img"
                 />
               </div>
+
               <div className="character_nav_btns">
                 <span
                   className="arrow_left"
@@ -107,6 +108,7 @@ const PopUp = ({ data }) => {
                   ></img>
                 </span>
               </div>
+
               <div className="character_background">
                 <img
                   src={require("./images/Pokeball_Invisible.png")}
@@ -114,9 +116,10 @@ const PopUp = ({ data }) => {
                   className="background_image"
                 />
               </div>
+
               <div className="character_main">
                 <div className="character_types">
-                  {data.types.map((type) => {
+                  {data.types.map((type, i) => {
                     return (
                       <>
                         <span
@@ -124,6 +127,7 @@ const PopUp = ({ data }) => {
                           style={{
                             backgroundColor: typeColors[type.type.name],
                           }}
+                          key={i}
                         >
                           <p className="type_text">
                             {type.type.name[0].toUpperCase() +
@@ -172,10 +176,10 @@ const PopUp = ({ data }) => {
                     style={{ height: 48, order: 1, background: "#E0E0E0" }}
                   ></hr>
                   <div className="character_moves">
-                    {data.abilities.map((poke) => {
+                    {data.abilities.map((poke, i) => {
                       return (
                         <>
-                          <h3 className="character_move">
+                          <h3 className="character_move" key={i}>
                             {poke.ability.name}
                           </h3>
                         </>
@@ -200,20 +204,20 @@ const PopUp = ({ data }) => {
                     className="character_stats_txt"
                     style={{ color: typeColors[data.types[0].type.name] }}
                   >
-                    {data.stats.map((stat) => {
+                    {data.stats.map((stat, i) => {
                       return (
                         <>
-                          <p>{formatStatName(stat.stat.name)}</p>
+                          <p key={i}>{formatStatName(stat.stat.name)}</p>
                         </>
                       );
                     })}
                   </div>
                   <hr style={{ height: 100 }}></hr>
                   <div className="character_stats_num">
-                    {data.stats.map((stat) => {
+                    {data.stats.map((stat, i) => {
                       return (
                         <>
-                          <p className="stats_num">
+                          <p className="stats_num" key={i}>
                             {stat.base_stat.toString().padStart(3, "0")}
                           </p>
                         </>
@@ -221,10 +225,10 @@ const PopUp = ({ data }) => {
                     })}
                   </div>
                   <div className="character_stats_range">
-                    {data.stats.map((stat) => {
+                    {data.stats.map((stat, i) => {
                       return (
                         <>
-                          <div className="progressBar">
+                          <div className="progressBar" key={i}>
                             <div
                               className="progressBarFill"
                               style={{
